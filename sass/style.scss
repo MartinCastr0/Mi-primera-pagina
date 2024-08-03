@@ -1,0 +1,499 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
+
+// Variables
+$primary-color: #4d4d54;
+$secondary-color: #6cc091;
+$text-color-light: gray;
+$background-light: #e5e5f7;
+$background-gradient: radial-gradient(#4d4d54 0.5px, transparent 0.5px), radial-gradient(#4d4d54 0.5px, #e5e5f7 0.5px);
+
+// Mixins
+@mixin transition($time) {
+  transition: $time;
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin form-input-placeholder-shown {
+  color: gray;
+}
+
+// Reset
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  box-sizing: border-box;
+}
+
+// Body
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: $background-light;
+  background-image: $background-gradient;
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+}
+
+// Header
+header {
+  height: 100px;
+  color: $text-color-light;
+  background-color: $primary-color;
+  padding: 0 50px;
+  @include flex-center;
+  justify-content: space-between;
+
+  img {
+    height: 100%;
+    padding: 0 50px;
+  }
+}
+
+// Menu
+.menu {
+  a {
+    color: $text-color-light;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 0 10px;
+    @include transition(0.4s);
+
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+}
+
+.mostrar-menu,
+.esconder-menu {
+  font-size: 30px;
+  cursor: pointer;
+  display: none;
+  @include transition(0.4s);
+
+  &:hover {
+    color: $secondary-color;
+  }
+}
+
+.mostrar-menu {
+  order: 1;
+}
+
+#check {
+  display: none;
+}
+
+// Carousel
+.carousel {
+  .carousel-item {
+    height: 600px;
+
+    img {
+      max-height: 100%;
+      object-fit: cover;
+    }
+
+    .carousel-caption {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .carousel .carousel-item {
+    height: 200px;
+
+    img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .carousel-caption {
+      bottom: 10px;
+      padding: 5px;
+      font-size: 14px;
+
+      h5 {
+        font-size: 16px;
+      }
+
+      p {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+// Main
+main {
+  flex: 1;
+  @include flex-center;
+  flex-direction: column;
+}
+
+// Form
+.form {
+  background-color: #fff;
+  margin: auto;
+  width: 90%;
+  max-width: 400px;
+  padding: 4.5em 3em;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.3);
+  margin-top: 2rem;
+
+  .form-title {
+    font-size: 2rem;
+    margin-bottom: 0.5em;
+  }
+
+  .form-paragraph {
+    font-weight: 300;
+  }
+
+  .form-container {
+    margin-top: 3em;
+    display: grid;
+    gap: 2.5em;
+  }
+
+  .form-group {
+    position: relative;
+    --color: $text-color-light;
+
+    .form-input {
+      width: 100%;
+      background: none;
+      color: gray;
+      font-size: 1rem;
+      padding: 0.6em 0.3em;
+      border: none;
+      outline: none;
+      border-bottom: 1px solid var(--color);
+      font-family: "Roboto", sans-serif;
+
+      &:not(:-moz-placeholder-shown),
+      &:not(:placeholder-shown) {
+        @include form-input-placeholder-shown;
+      }
+
+      &:not(:-moz-placeholder-shown) + .form-label,
+      &:not(:placeholder-shown) + .form-label,
+      &:focus + .form-label {
+        transform: translateY(-12px) scale(0.7);
+        transform-origin: left top;
+        color: $secondary-color;
+      }
+    }
+
+    .form-label {
+      color: var(--color);
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      left: 5px;
+      transform: translateY(10px);
+      @include transition(0.5s);
+    }
+  }
+
+  .form-submit {
+    background: $secondary-color;
+    color: #fff;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    padding: 0.8em 0;
+    border: none;
+    border-radius: 0.5em;
+  }
+
+  @media (max-width: 425px) {
+    .form-title {
+      font-size: 1.8rem;
+    }
+  }
+}
+
+// Footer
+footer {
+  background: rgba(0, 0, 0, 0.2);
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  margin-top: 2rem;
+}
+
+// Responsive
+// Celular
+@media (min-width: 320px) and (max-width: 480px) {
+  .header img {
+    width: 100%;
+    height: 100vh;
+    @include flex-center;
+  }
+}
+
+// Tablet
+@media (max-width: 767px) {
+  .mostrar-menu,
+  .esconder-menu {
+    display: block;
+  }
+
+  .menu {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: $primary-color;
+    right: -100%;
+    top: 0;
+    text-align: center;
+    padding: 100px 0;
+    z-index: 100;
+    @include transition(0.8s);
+
+    a {
+      display: block;
+      padding: 20px;
+    }
+
+    .esconder-menu {
+      position: absolute;
+      top: 40px;
+      right: 40px;
+    }
+
+    #check:checked ~ & {
+      right: 0;
+    }
+  }
+}
+
+// Card Bootstrap
+.servicios {
+  padding: 80px 0;
+}
+
+.bg-card1,
+.bg-card2,
+.bg-card3,
+.bg-card4 {
+  background-color: $primary-color;
+}
+
+form {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+
+  h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+}
+
+// Contact Page Background
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+header {
+  background-color: $primary-color;
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+  position: relative;
+  z-index: 100;
+}
+
+.contact-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../media/hero1.jpg") no-repeat center center;
+  background-size: cover;
+  z-index: "-";
+}
+
+.contenido {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+// Registro Background
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: Arial, sans-serif;
+  background-size: cover;
+}
+
+.registro-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../media/fondo-españa.webp") no-repeat center center;
+  background-size: cover;
+}
+
+header {
+  height: 100px;
+  background: $primary-color;
+  color: $text-color-light;
+  padding: 0 50px;
+  @include flex-center;
+  justify-content: space-between;
+}
+
+.login-container {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  @include flex-center;
+  flex-direction: column;
+  margin: auto;
+
+  .login-logo {
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      text-align: center;
+      color: gray;
+    }
+  }
+
+  .login-form {
+    @include flex-center;
+    flex-direction: column;
+    background: white;
+    z-index: 1;
+
+    .form-group {
+      margin-bottom: 15px;
+      width: 100%;
+      max-width: 300px;
+      text-align: left;
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      input[type="email"],
+      input[type="password"] {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+      }
+
+      input[type="checkbox"] {
+        margin-right: 5px;
+      }
+    }
+
+    .forgot-password {
+      text-align: right;
+      display: block;
+      margin-top: -10px;
+      margin-bottom: 20px;
+    }
+
+    .login-button {
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+
+      &:hover {
+        background: #555;
+      }
+    }
+
+    .terms {
+      margin-top: 20px;
+      font-size: 0.8em;
+      color: #666;
+    }
+  }
+}
+
+// Footer (again for completeness)
+footer {
+  background: rgba(0, 0, 0, 0.2);
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  margin-top: 2rem;
+}
+
+
+
+
+
+
